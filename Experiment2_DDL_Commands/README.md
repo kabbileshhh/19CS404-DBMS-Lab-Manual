@@ -1,228 +1,119 @@
-# Experiment 2: DDL Commands
+# ER Diagram Workshop – Submission Template
 
-## AIM
-To study and implement DDL commands and different types of constraints.
+## Objective
+To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
-## THEORY
+## Purpose
+Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
 
-### 1. CREATE
-Used to create a new relation (table).
-
-**Syntax:**
-```sql
-CREATE TABLE (
-  field_1 data_type(size),
-  field_2 data_type(size),
-  ...
-);
-```
-### 2. ALTER
-Used to add, modify, drop, or rename fields in an existing relation.
-(a) ADD
-```sql
-ALTER TABLE std ADD (Address CHAR(10));
-```
-(b) MODIFY
-```sql
-ALTER TABLE relation_name MODIFY (field_1 new_data_type(size));
-```
-(c) DROP
-```sql
-ALTER TABLE relation_name DROP COLUMN field_name;
-```
-(d) RENAME
-```sql
-ALTER TABLE relation_name RENAME COLUMN old_field_name TO new_field_name;
-```
-### 3. DROP TABLE
-Used to permanently delete the structure and data of a table.
-```sql
-DROP TABLE relation_name;
-```
-### 4. RENAME
-Used to rename an existing database object.
-```sql
-RENAME TABLE old_relation_name TO new_relation_name;
-```
-### CONSTRAINTS
-Constraints are used to specify rules for the data in a table. If there is any violation between the constraint and the data action, the action is aborted by the constraint. It can be specified when the table is created (using CREATE TABLE) or after it is created (using ALTER TABLE).
-### 1. NOT NULL
-When a column is defined as NOT NULL, it becomes mandatory to enter a value in that column.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) NOT NULL
-);
-```
-### 2. UNIQUE
-Ensures that values in a column are unique.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) UNIQUE
-);
-```
-### 3. CHECK
-Specifies a condition that each row must satisfy.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) CHECK (logical_expression)
-);
-```
-### 4. PRIMARY KEY
-Used to uniquely identify each record in a table.
-Properties:
-Must contain unique values.
-Cannot be null.
-Should contain minimal fields.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) PRIMARY KEY
-);
-```
-### 5. FOREIGN KEY
-Used to reference the primary key of another table.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size),
-  FOREIGN KEY (column_name) REFERENCES other_table(column)
-);
-```
-### 6. DEFAULT
-Used to insert a default value into a column if no value is specified.
-
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  col_name1 data_type,
-  col_name2 data_type,
-  col_name3 data_type DEFAULT 'default_value'
-);
-```
-
-**Question 1**
---
--- Paste Question 1 here
-
-```sql
--- Paste your SQL code below for Question 1
-```
-
-**Output:**
-
-![Output1](output.png)
-
-**Question 2**
 ---
--- Paste Question 2 here
 
-```sql
--- Paste your SQL code below for Question 2
-```
+# Scenario A: City Fitness Club Management
 
-**Output:**
+**Business Context:**  
+FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
 
-![Output2](output.png)
+**Requirements:**  
+- Members register with name, membership type, and start date.  
+- Each member can join multiple programs (Yoga, Zumba, Weight Training).  
+- Trainers assigned to programs; a program may have multiple trainers.  
+- Members may book personal training sessions with trainers.  
+- Attendance recorded for each session.  
+- Payments tracked for memberships and sessions.
 
-**Question 3**
+### ER Diagram:
+<img width="1100" height="662" alt="Screenshot 2026-09-08 140941" src="https://github.com/user-attachments/assets/ad036d12-250e-4c40-b316-fa57b11b3b67" />
+
+
+### Entities and Attributes
+
+<img width="1105" height="372" alt="Screenshot 2026-09-08 140959" src="https://github.com/user-attachments/assets/dfef9204-a1df-4e2e-8595-9ef0267fbd40" />
+
+
+### Relationships and Constraints
+
+<img width="1107" height="377" alt="Screenshot 2026-09-08 141020" src="https://github.com/user-attachments/assets/11acf043-099e-4749-8380-2b5bcedc4688" />
+
+
+### Assumptions
+- Each session involves exactly one trainer and one member.
+- Programs are predefined (Yoga, Zumba, Weight Training, etc.).
+- Payments are only for membership or session bookings.
 ---
--- Paste Question 3 here
 
-```sql
--- Paste your SQL code below for Question 3
-```
+# Scenario B: City Library Event & Book Lending System
 
-**Output:**
+**Business Context:**  
+The Central Library wants to manage book lending and cultural events.
 
-![Output3](output.png)
+**Requirements:**  
+- Members borrow books, with loan and return dates tracked.  
+- Each book has title, author, and category.  
+- Library organizes events; members can register.  
+- Each event has one or more speakers/authors.  
+- Rooms are booked for events and study.  
+- Overdue fines apply for late returns.
 
-**Question 4**
+### ER Diagram:
+
+<img width="1056" height="702" alt="Screenshot 2026-09-08 141043" src="https://github.com/user-attachments/assets/9c52a6aa-7b3c-4e1e-b903-34d9902ab5fb" />
+
+
+### Entities and Attributes
+
+<img width="928" height="305" alt="Screenshot 2026-09-08 141055" src="https://github.com/user-attachments/assets/366707a3-bb27-4414-999b-055eeac30c81" />
+
+
+### Relationships and Constraints
+
+<img width="762" height="175" alt="Screenshot 2026-09-08 141108" src="https://github.com/user-attachments/assets/b4d65aec-95bb-4064-83db-6c94cfd0c302" />
+
+
+### Assumptions
+- Books can be borrowed multiple times by different Members.
+- Each Event happens in one Room at a specific time.
+- A Speaker can participate in multiple Events.
+
 ---
--- Paste Question 4 here
 
-```sql
--- Paste your SQL code below for Question 4
-```
+# Scenario C: Restaurant Table Reservation & Ordering
 
-**Output:**
+**Business Context:**  
+A popular restaurant wants to manage reservations, orders, and billing.
 
-![Output4](output.png)
+**Requirements:**  
+- Customers can reserve tables or walk in.  
+- Each reservation includes date, time, and number of guests.  
+- Customers place food orders linked to reservations.  
+- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
+- Bills generated per reservation, including food and service charges.  
+- Waiters assigned to serve reservations.
 
-**Question 5**
+### ER Diagram:
+
+<img width="1102" height="545" alt="Screenshot 2026-09-08 141211" src="https://github.com/user-attachments/assets/1003fdb5-07d7-4e1e-a4d1-ee7cec2bd3b4" />
+
+
+### Entities and Attributes
+
+<img width="927" height="266" alt="Screenshot 2026-09-08 141219" src="https://github.com/user-attachments/assets/3e791302-b11e-484d-9dcc-5696cf47969c" />
+
+
+### Relationships and Constraints
+
+<img width="802" height="205" alt="Screenshot 2026-09-08 141230" src="https://github.com/user-attachments/assets/b23b7c81-7b33-4352-b82d-066bcac40051" />
+
+
+### Assumptions
+- One reservation uses one table and one waiter.
+- Bill is generated automatically after service.
+- Customer details stored for every reservation.
 ---
--- Paste Question 5 here
 
-```sql
--- Paste your SQL code below for Question 5
-```
+## Instructions for Students
 
-**Output:**
-
-![Output5](output.png)
-
-**Question 6**
----
--- Paste Question 6 here
-
-```sql
--- Paste your SQL code below for Question 6
-```
-
-**Output:**
-
-![Output6](output.png)
-
-**Question 7**
----
--- Paste Question 7 here
-
-```sql
--- Paste your SQL code below for Question 7
-```
-
-**Output:**
-
-![Output7](output.png)
-
-**Question 8**
----
--- Paste Question 8 here
-
-```sql
--- Paste your SQL code below for Question 8
-```
-
-**Output:**
-
-![Output8](output.png)
-
-**Question 9**
----
--- Paste Question 9 here
-
-```sql
--- Paste your SQL code below for Question 9
-```
-
-**Output:**
-
-![Output9](output.png)
-
-**Question 10**
----
--- Paste Question 10 here
-
-```sql
--- Paste your SQL code below for Question 10
-```
-
-**Output:**
-
-![Output10](output.png)
-
-
-## RESULT
-Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+1. Complete **all three scenarios** (A, B, C).  
+2. Identify entities, relationships, and attributes for each.  
+3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
+4. Fill in all tables and assumptions for each scenario.  
+5. Export the completed Markdown (with diagrams) as **a single PDF**
